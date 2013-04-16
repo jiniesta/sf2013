@@ -1,0 +1,10 @@
+<?php
+class homeComponents extends sfComponents{
+  public function executeMenuPrincipal(sfWebRequest $request){
+    $query=Doctrine_Query::create();
+    $query->from('seccion s');
+    $query->where('s.tipo = ?',"Principal");
+    $this->secciones= $query->execute();
+  }
+}
+?>

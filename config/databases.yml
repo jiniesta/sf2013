@@ -1,0 +1,14 @@
+all:
+  doctrine:
+    class: sfDoctrineDatabase
+    param:
+      dsn: 'mysql:host=localhost;dbname=sf2013'
+      username: sf2013
+      password: sf2013
+test:
+  doctrine:
+    class: sfDoctrineDatabase
+    param:
+      dsn: 'mysql:host=localhost; dbname=sf2013_test'
+      username: sf2013
+      password: sf2013

@@ -1,0 +1,7 @@
+<?php echo 'FormNoticia '.$valido.'<br>' ?>
+
+<?php 
+  if (!$valido){
+    foreach ($form as $campo) if ($campo->renderError()) echo $campo->getName().':<br>'.$campo->renderError()
+  }
+?>

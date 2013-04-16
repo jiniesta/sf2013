@@ -1,0 +1,9 @@
+<h1><?php echo $noticia ?></h1>
+<h3><?php echo $noticia->getSubtitulo() ?></h3>
+<p><?php echo $noticia->getTexto() ?></p>
+<?php foreach($comentarios as $comentario): ?>
+<?php  echo $comentario->getTexto(); ?>
+<br>
+<?php  echo $comentario->getComentarioUsuario(); ?>
+<br>
+<?php endforeach ?>

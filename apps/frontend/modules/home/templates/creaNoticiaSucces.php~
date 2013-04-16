@@ -1,0 +1,4 @@
+<?php
+$noticia=new Noticia();
+$noticia->save();
+?>

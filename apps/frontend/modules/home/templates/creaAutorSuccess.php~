@@ -1,0 +1,8 @@
+<?php echo form_tag_for($form, '@formNoticia')?>
+<table>
+  <tfooter>
+  </tfooter>
+  <tbody>
+    <?php echo $form ?>
+  </tbody>
+</table>

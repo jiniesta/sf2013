@@ -1,0 +1,12 @@
+# You can find more information about this file on the symfony website:
+# http://www.symfony-project.org/reference/1_4/en/07-Databases
+
+all:
+  doctrine:
+    class: sfDoctrineDatabase
+    param:
+      dsn:      mysql:host=localhost;dbname=sf2013
+      username: sf2013
+      password: sf2013
+      
+Crear base de datos para el proyecto y crear usuario con todos los permisos.

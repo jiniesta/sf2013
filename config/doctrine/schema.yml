@@ -1,0 +1,80 @@
+Noticia:
+ columns:
+  titulo: { type: string(150), notnull: true }
+  subtitulo: { type: string(250), notnull: true }
+  texto: { type: string(10000), notnull: true }
+  fecha: { type: date, notnull: true }
+  
+ relations: 
+  Autores:
+   class: sfGuardUser
+   refClass: AutorNoticia
+   local: noticia_id
+   foreign: autor_id
+   foreignAlias: Noticias
+ 
+  Secciones:
+   class: Seccion
+   refClass: SeccionNoticia
+   local: noticia_id
+   foreign: seccion_id
+   foreignAlias: Noticias
+   
+  Comentarios:
+   class: Comentario
+   refClass: ComentarioNoticia
+   local: noticia_id
+   foreign: comentario_id
+   foreignAlias: Noticias
+ 
+AutorNoticia:
+ columns: 
+  noticia_id: { type: integer, primary: true }
+  autor_id: { type: integer, primary: true }
+ relations:
+  Noticia: { local: noticia_id, foreign: id }
+  sf_guard_user: { local: autor_id, foreign: id }
+
+#------------------------relacion noticias-autor--------------------------------------
+
+Seccion:
+ columns:
+  tipo: { type: string(15), notnull: true }
+  seccion: { type: string(20), notnull: true }
+  
+SeccionNoticia:
+ columns:
+  seccion_id: { type: integer, primary: true }
+  importancia: { type: integer }
+  noticia_id: { type: integer, primary: true }
+ relations:
+  Noticia: { local: noticia_id, foreign: id }
+  Seccion: { local: seccion_id, foreign: id }
+#-------------------------relacion noticias-comentario--------------------------------
+ComentarioNoticia:
+ columns:
+  comentario_id: { type: integer, primary: true }
+  noticia_id: { type: integer, primary: true }
+ relations:
+  Noticia: { local: noticia_id, foreign: id }
+  Comentario: { local: comentario_id, foreign: id }
+
+Comentario:
+ columns:
+  texto: { type: string(140), notnull: true }
+  fecha: { type: date, notnull: true }
+ relations:
+  Usuario:
+   class: sfGuardUser
+   refClass: ComentarioUsuario
+   local: comentario_id
+   foreign: usuario_id
+   foreignAlias: Comentarios
+  
+ComentarioUsuario:
+ columns:
+  comentario_id: { type: integer, primary: true }
+  usuario_id: { type: integer, primary: true }
+ relations:
+    Comentario: { local: comentario_id, foreign: id }
+    sf_guard_user: { local: usuario_id, foreign: id }

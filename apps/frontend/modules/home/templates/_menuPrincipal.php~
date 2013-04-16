@@ -1,0 +1,5 @@
+<?php
+  foreach($secciones as $value){
+    $value->getSeccion();
+  }
+?>

@@ -30,7 +30,7 @@ dev:
     param:
       delivery_strategy: none           
       transport:
-        class: Swift_MailTransport
+        class: Swift_SmtpTransport
         param:
           port: 25
           host: localhost

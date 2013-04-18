@@ -62,13 +62,6 @@
           <?php echo $form['secciones_list'] ?>
         </td>
       </tr>
-      <tr>
-        <th><?php echo $form['comentarios_list']->renderLabel() ?></th>
-        <td>
-          <?php echo $form['comentarios_list']->renderError() ?>
-          <?php echo $form['comentarios_list'] ?>
-        </td>
-      </tr>
     </tbody>
   </table>
 </form>

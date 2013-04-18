@@ -38,11 +38,5 @@ class sfGuardUserForm extends PluginsfGuardUserForm
     
     unset($this->validatorSchema['permissions_list']);
     unset($this->widgetSchema['permissions_list']);
-    
-    unset($this->validatorSchema['noticias_list']);
-    unset($this->widgetSchema['noticias_list']);
-    
-    unset($this->validatorSchema['comentarios_list']);
-    unset($this->widgetSchema['comentarios_list']);
   }
 }

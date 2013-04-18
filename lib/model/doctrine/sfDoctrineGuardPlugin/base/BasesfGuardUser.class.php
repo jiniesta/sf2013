@@ -22,7 +22,6 @@
  * @property sfGuardRememberKey $RememberKeys
  * @property sfGuardForgotPassword $ForgotPassword
  * @property Doctrine_Collection $Noticias
- * @property Doctrine_Collection $Comentarios
  * 
  * @method string                getFirstName()             Returns the current record's "first_name" value
  * @method string                getLastName()              Returns the current record's "last_name" value
@@ -41,7 +40,6 @@
  * @method sfGuardRememberKey    getRememberKeys()          Returns the current record's "RememberKeys" value
  * @method sfGuardForgotPassword getForgotPassword()        Returns the current record's "ForgotPassword" value
  * @method Doctrine_Collection   getNoticias()              Returns the current record's "Noticias" collection
- * @method Doctrine_Collection   getComentarios()           Returns the current record's "Comentarios" collection
  * @method sfGuardUser           setFirstName()             Sets the current record's "first_name" value
  * @method sfGuardUser           setLastName()              Sets the current record's "last_name" value
  * @method sfGuardUser           setEmailAddress()          Sets the current record's "email_address" value
@@ -59,7 +57,6 @@
  * @method sfGuardUser           setRememberKeys()          Sets the current record's "RememberKeys" value
  * @method sfGuardUser           setForgotPassword()        Sets the current record's "ForgotPassword" value
  * @method sfGuardUser           setNoticias()              Sets the current record's "Noticias" collection
- * @method sfGuardUser           setComentarios()           Sets the current record's "Comentarios" collection
  * 
  * @package    sf2013
  * @subpackage model
@@ -159,11 +156,6 @@ abstract class BasesfGuardUser extends sfDoctrineRecord
              'refClass' => 'AutorNoticia',
              'local' => 'autor_id',
              'foreign' => 'noticia_id'));
-
-        $this->hasMany('Comentario as Comentarios', array(
-             'refClass' => 'ComentarioUsuario',
-             'local' => 'usuario_id',
-             'foreign' => 'comentario_id'));
 
         $timestampable0 = new Doctrine_Template_Timestampable(array(
              ));

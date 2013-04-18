@@ -4,6 +4,6 @@
 <?php foreach($comentarios as $comentario): ?>
 <?php  echo $comentario->getTexto(); ?>
 <br>
-<?php  echo $comentario->getUsuario(); ?>
+<?php  echo $comentario->getComentarioUsuario(); ?>
 <br>
 <?php endforeach ?>

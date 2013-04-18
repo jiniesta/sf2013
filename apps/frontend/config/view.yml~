@@ -1,6 +1,11 @@
 # You can find more information about this file on the symfony website:
 # http://www.symfony-project.org/reference/1_4/en/13-View
 
+home:
+  stylesheets:    [bootstrap.css]
+
+  javascripts:    [bootstrap.js]
+
 default:
   http_metas:
     content-type: text/html
@@ -12,7 +17,7 @@ default:
     #language:     en
     #robots:       index, follow
 
-  stylesheets:    [main.css, bootstrap.css]
+  stylesheets:    [bootstrap.css]
 
   javascripts:    [bootstrap.js]
 

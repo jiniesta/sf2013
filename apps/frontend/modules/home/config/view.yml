@@ -1,0 +1,4 @@
+home:
+  stylesheets:    [bootstrap.css]
+
+  javascripts:    [bootstrap.js]

@@ -19,13 +19,6 @@ Noticia:
    local: noticia_id
    foreign: seccion_id
    foreignAlias: Noticias
-   
-  Comentarios:
-   class: Comentario
-   refClass: ComentarioNoticia
-   local: noticia_id
-   foreign: comentario_id
-   foreignAlias: Noticias
  
 AutorNoticia:
  columns: 
@@ -63,18 +56,8 @@ Comentario:
  columns:
   texto: { type: string(140), notnull: true }
   fecha: { type: date, notnull: true }
+  noticia_id: { type: integer, notnull: true }
+  usuario_id: { type: integer, notnull: true }
  relations:
-  Usuario:
-   class: sf_guard_user
-   refClass: ComentarioUsuario
-   local: comentario_id
-   foreign: usuario_id
-   foreignAlias: Comentarios
   
-ComentarioUsuario:
- columns:
-  comentario_id: { type: integer, primary: true }
-  usuario_id: { type: integer, primary: true }
- relations:
-    Comentario: { local: comentario_id, foreign: id }
-    sf_guard_user: { local: usuario_id, foreign: id }
+  

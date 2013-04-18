@@ -31,7 +31,6 @@ abstract class BasesfGuardUserForm extends BaseFormDoctrine
       'groups_list'      => new sfWidgetFormDoctrineChoice(array('multiple' => true, 'model' => 'sfGuardGroup')),
       'permissions_list' => new sfWidgetFormDoctrineChoice(array('multiple' => true, 'model' => 'sfGuardPermission')),
       'noticias_list'    => new sfWidgetFormDoctrineChoice(array('multiple' => true, 'model' => 'Noticia')),
-      'comentarios_list' => new sfWidgetFormDoctrineChoice(array('multiple' => true, 'model' => 'Comentario')),
     ));
 
     $this->setValidators(array(
@@ -51,7 +50,6 @@ abstract class BasesfGuardUserForm extends BaseFormDoctrine
       'groups_list'      => new sfValidatorDoctrineChoice(array('multiple' => true, 'model' => 'sfGuardGroup', 'required' => false)),
       'permissions_list' => new sfValidatorDoctrineChoice(array('multiple' => true, 'model' => 'sfGuardPermission', 'required' => false)),
       'noticias_list'    => new sfValidatorDoctrineChoice(array('multiple' => true, 'model' => 'Noticia', 'required' => false)),
-      'comentarios_list' => new sfValidatorDoctrineChoice(array('multiple' => true, 'model' => 'Comentario', 'required' => false)),
     ));
 
     $this->validatorSchema->setPostValidator(
@@ -94,11 +92,6 @@ abstract class BasesfGuardUserForm extends BaseFormDoctrine
       $this->setDefault('noticias_list', $this->object->Noticias->getPrimaryKeys());
     }
 
-    if (isset($this->widgetSchema['comentarios_list']))
-    {
-      $this->setDefault('comentarios_list', $this->object->Comentarios->getPrimaryKeys());
-    }
-
   }
 
   protected function doSave($con = null)
@@ -106,7 +99,6 @@ abstract class BasesfGuardUserForm extends BaseFormDoctrine
     $this->saveGroupsList($con);
     $this->savePermissionsList($con);
     $this->saveNoticiasList($con);
-    $this->saveComentariosList($con);
 
     parent::doSave($con);
   }
@@ -222,44 +214,6 @@ abstract class BasesfGuardUserForm extends BaseFormDoctrine
     if (count($link))
     {
       $this->object->link('Noticias', array_values($link));
-    }
-  }
-
-  public function saveComentariosList($con = null)
-  {
-    if (!$this->isValid())
-    {
-      throw $this->getErrorSchema();
-    }
-
-    if (!isset($this->widgetSchema['comentarios_list']))
-    {
-      // somebody has unset this widget
-      return;
-    }
-
-    if (null === $con)
-    {
-      $con = $this->getConnection();
-    }
-
-    $existing = $this->object->Comentarios->getPrimaryKeys();
-    $values = $this->getValue('comentarios_list');
-    if (!is_array($values))
-    {
-      $values = array();
-    }
-
-    $unlink = array_diff($existing, $values);
-    if (count($unlink))
-    {
-      $this->object->unlink('Comentarios', array_values($unlink));
-    }
-
-    $link = array_diff($values, $existing);
-    if (count($link))
-    {
-      $this->object->link('Comentarios', array_values($link));
     }
   }
 

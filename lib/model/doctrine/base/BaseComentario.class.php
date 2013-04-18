@@ -7,23 +7,20 @@
  * 
  * @property string $texto
  * @property date $fecha
- * @property Doctrine_Collection $Usuario
- * @property Doctrine_Collection $Noticias
+ * @property integer $noticia_id
+ * @property integer $usuario_id
  * @property Doctrine_Collection $ComentarioNoticia
- * @property Doctrine_Collection $ComentarioUsuario
  * 
  * @method string              getTexto()             Returns the current record's "texto" value
  * @method date                getFecha()             Returns the current record's "fecha" value
- * @method Doctrine_Collection getUsuario()           Returns the current record's "Usuario" collection
- * @method Doctrine_Collection getNoticias()          Returns the current record's "Noticias" collection
+ * @method integer             getNoticiaId()         Returns the current record's "noticia_id" value
+ * @method integer             getUsuarioId()         Returns the current record's "usuario_id" value
  * @method Doctrine_Collection getComentarioNoticia() Returns the current record's "ComentarioNoticia" collection
- * @method Doctrine_Collection getComentarioUsuario() Returns the current record's "ComentarioUsuario" collection
  * @method Comentario          setTexto()             Sets the current record's "texto" value
  * @method Comentario          setFecha()             Sets the current record's "fecha" value
- * @method Comentario          setUsuario()           Sets the current record's "Usuario" collection
- * @method Comentario          setNoticias()          Sets the current record's "Noticias" collection
+ * @method Comentario          setNoticiaId()         Sets the current record's "noticia_id" value
+ * @method Comentario          setUsuarioId()         Sets the current record's "usuario_id" value
  * @method Comentario          setComentarioNoticia() Sets the current record's "ComentarioNoticia" collection
- * @method Comentario          setComentarioUsuario() Sets the current record's "ComentarioUsuario" collection
  * 
  * @package    sf2013
  * @subpackage model
@@ -44,26 +41,20 @@ abstract class BaseComentario extends sfDoctrineRecord
              'type' => 'date',
              'notnull' => true,
              ));
+        $this->hasColumn('noticia_id', 'integer', null, array(
+             'type' => 'integer',
+             'notnull' => true,
+             ));
+        $this->hasColumn('usuario_id', 'integer', null, array(
+             'type' => 'integer',
+             'notnull' => true,
+             ));
     }
 
     public function setUp()
     {
         parent::setUp();
-        $this->hasMany('sfGuardUser as Usuario', array(
-             'refClass' => 'ComentarioUsuario',
-             'local' => 'comentario_id',
-             'foreign' => 'usuario_id'));
-
-        $this->hasMany('Noticia as Noticias', array(
-             'refClass' => 'ComentarioNoticia',
-             'local' => 'comentario_id',
-             'foreign' => 'noticia_id'));
-
         $this->hasMany('ComentarioNoticia', array(
-             'local' => 'id',
-             'foreign' => 'comentario_id'));
-
-        $this->hasMany('ComentarioUsuario', array(
              'local' => 'id',
              'foreign' => 'comentario_id'));
     }

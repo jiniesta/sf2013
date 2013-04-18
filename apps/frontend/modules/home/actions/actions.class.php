@@ -18,7 +18,6 @@ class homeActions extends sfActions
   
   public function executeIndex(sfWebRequest $request)
   {
-    $this->noticia=Doctrine::getTable('Noticia')->createQuery('q')->fetchOne();
-    $this->comentarios=$this->noticia->getComentarios();
+    
   }
 }

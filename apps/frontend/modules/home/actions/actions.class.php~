@@ -20,9 +20,5 @@ class homeActions extends sfActions
   {
     $this->noticia=Doctrine::getTable('Noticia')->createQuery('q')->fetchOne();
     $this->comentarios=$this->noticia->getComentarios();
-    foreach($this->comentarios as $comentario)
-    {
-      $comentario->getUsuario();
-    }
   }
 }

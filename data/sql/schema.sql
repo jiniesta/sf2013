@@ -1,7 +1,5 @@
 CREATE TABLE autor_noticia (noticia_id BIGINT, autor_id BIGINT, PRIMARY KEY(noticia_id, autor_id)) ENGINE = INNODB;
-CREATE TABLE comentario (id BIGINT AUTO_INCREMENT, texto VARCHAR(140) NOT NULL, fecha DATE NOT NULL, PRIMARY KEY(id)) ENGINE = INNODB;
-CREATE TABLE comentario_noticia (comentario_id BIGINT, noticia_id BIGINT, PRIMARY KEY(comentario_id, noticia_id)) ENGINE = INNODB;
-CREATE TABLE comentario_usuario (comentario_id BIGINT, usuario_id BIGINT, PRIMARY KEY(comentario_id, usuario_id)) ENGINE = INNODB;
+CREATE TABLE comentario (id BIGINT AUTO_INCREMENT, texto VARCHAR(140) NOT NULL, fecha DATE NOT NULL, usuario_id BIGINT NOT NULL, noticia_id BIGINT NOT NULL, INDEX noticia_id_idx (noticia_id), PRIMARY KEY(id)) ENGINE = INNODB;
 CREATE TABLE noticia (id BIGINT AUTO_INCREMENT, titulo VARCHAR(150) NOT NULL, subtitulo VARCHAR(250) NOT NULL, texto TEXT NOT NULL, fecha DATE NOT NULL, PRIMARY KEY(id)) ENGINE = INNODB;
 CREATE TABLE seccion (id BIGINT AUTO_INCREMENT, tipo VARCHAR(15) NOT NULL, seccion VARCHAR(20) NOT NULL, PRIMARY KEY(id)) ENGINE = INNODB;
 CREATE TABLE seccion_noticia (seccion_id BIGINT, importancia BIGINT, noticia_id BIGINT, PRIMARY KEY(seccion_id, noticia_id)) ENGINE = INNODB;
@@ -15,10 +13,7 @@ CREATE TABLE sf_guard_user_group (user_id BIGINT, group_id BIGINT, created_at DA
 CREATE TABLE sf_guard_user_permission (user_id BIGINT, permission_id BIGINT, created_at DATETIME NOT NULL, updated_at DATETIME NOT NULL, PRIMARY KEY(user_id, permission_id)) ENGINE = INNODB;
 ALTER TABLE autor_noticia ADD CONSTRAINT autor_noticia_noticia_id_noticia_id FOREIGN KEY (noticia_id) REFERENCES noticia(id);
 ALTER TABLE autor_noticia ADD CONSTRAINT autor_noticia_autor_id_sf_guard_user_id FOREIGN KEY (autor_id) REFERENCES sf_guard_user(id);
-ALTER TABLE comentario_noticia ADD CONSTRAINT comentario_noticia_noticia_id_noticia_id FOREIGN KEY (noticia_id) REFERENCES noticia(id);
-ALTER TABLE comentario_noticia ADD CONSTRAINT comentario_noticia_comentario_id_comentario_id FOREIGN KEY (comentario_id) REFERENCES comentario(id);
-ALTER TABLE comentario_usuario ADD CONSTRAINT comentario_usuario_usuario_id_sf_guard_user_id FOREIGN KEY (usuario_id) REFERENCES sf_guard_user(id);
-ALTER TABLE comentario_usuario ADD CONSTRAINT comentario_usuario_comentario_id_comentario_id FOREIGN KEY (comentario_id) REFERENCES comentario(id);
+ALTER TABLE comentario ADD CONSTRAINT comentario_noticia_id_noticia_id FOREIGN KEY (noticia_id) REFERENCES noticia(id);
 ALTER TABLE seccion_noticia ADD CONSTRAINT seccion_noticia_seccion_id_seccion_id FOREIGN KEY (seccion_id) REFERENCES seccion(id);
 ALTER TABLE seccion_noticia ADD CONSTRAINT seccion_noticia_noticia_id_noticia_id FOREIGN KEY (noticia_id) REFERENCES noticia(id);
 ALTER TABLE sf_guard_forgot_password ADD CONSTRAINT sf_guard_forgot_password_user_id_sf_guard_user_id FOREIGN KEY (user_id) REFERENCES sf_guard_user(id) ON DELETE CASCADE;

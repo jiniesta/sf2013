@@ -18,7 +18,40 @@ class homeActions extends sfActions
   
   public function executeIndex(sfWebRequest $request)
   {
-    $this->noticia=Doctrine::getTable('Noticia')->createQuery('q')->fetchOne();
-    $this->comentarios=$this->noticia->getComentarios();
+  	$noticias = Doctrine::getTable('Noticia') -> createQuery('q') -> execute();
+    $this -> noticias = $noticias;
+  }
+
+  public function executeDeportes(sfWebRequest $request)
+  {
+    $seccion = new Seccion();
+    $seccion -> setSeccion('Deportes');
+    $this -> noticias = $seccion -> getNoticias($seccion);
+  }
+
+  public function executePolitica(sfWebRequest $request)
+  {
+    $seccion = new Seccion();
+    $seccion -> setSeccion('Política');
+    $this -> noticias = $seccion -> getNoticias($seccion);      
+  }
+
+  public function executeEconomia(sfWebRequest $request)
+  {
+    $seccion = new Seccion();
+    $seccion -> setSeccion('Economía');
+    $this -> noticias = $seccion -> getNoticias($seccion);
+  }
+
+  public function executeInternacional(sfWebRequest $request)
+  {
+    $seccion = new Seccion();
+    $seccion -> setSeccion('Internacional');
+    $this -> noticias = $seccion -> getNoticias($seccion);
+  }
+
+  public function executeCultura(sfWebRequest $request)
+  {
+      
   }
 }

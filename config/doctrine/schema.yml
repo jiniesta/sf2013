@@ -10,7 +10,7 @@ Noticia:
    class: sfGuardUser
    refClass: AutorNoticia
    local: noticia_id
-   foreign: autor_id
+   foreign: autor_idphp
    foreignAlias: Noticias
  
   Secciones:
@@ -18,13 +18,6 @@ Noticia:
    refClass: SeccionNoticia
    local: noticia_id
    foreign: seccion_id
-   foreignAlias: Noticias
-   
-  Comentarios:
-   class: Comentario
-   refClass: ComentarioNoticia
-   local: noticia_id
-   foreign: comentario_id
    foreignAlias: Noticias
  
 AutorNoticia:
@@ -50,31 +43,15 @@ SeccionNoticia:
  relations:
   Noticia: { local: noticia_id, foreign: id }
   Seccion: { local: seccion_id, foreign: id }
+
 #-------------------------relacion noticias-comentario--------------------------------
-ComentarioNoticia:
- columns:
-  comentario_id: { type: integer, primary: true }
-  noticia_id: { type: integer, primary: true }
- relations:
-  Noticia: { local: noticia_id, foreign: id }
-  Comentario: { local: comentario_id, foreign: id }
 
 Comentario:
  columns:
   texto: { type: string(140), notnull: true }
   fecha: { type: date, notnull: true }
+  usuario_id: { type: integer, notnull: true }
+  noticia_id: { type: integer, notnull: true }
  relations:
-  Usuario:
-   class: sfGuardUser
-   refClass: ComentarioUsuario
-   local: comentario_id
-   foreign: usuario_id
-   foreignAlias: Comentarios
-  
-ComentarioUsuario:
- columns:
-  comentario_id: { type: integer, primary: true }
-  usuario_id: { type: integer, primary: true }
- relations:
-    Comentario: { local: comentario_id, foreign: id }
-    sf_guard_user: { local: usuario_id, foreign: id }
+  sf_guard_user : { local: usuario_id, foreign: id }  
+  Noticia : { local: noticia_id, foreign: id }  

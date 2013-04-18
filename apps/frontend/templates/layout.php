@@ -9,6 +9,19 @@
     <?php include_javascripts() ?>
   </head>
   <body>
-    <?php echo $sf_content ?>
+    <div id="contenedor">
+      <header>
+        <div class="row-fluid">
+          <center>
+          <div class="span6 btn-group">
+            <?php include_component("home","menuPrincipal") ?>
+          </div>
+          </center>
+        </div>
+      </header>
+      <div id="cuerpo">
+        <?php echo $sf_content ?>
+      </div>
+    </div>
   </body>
 </html>

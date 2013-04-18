@@ -9,7 +9,7 @@
     <tfoot>
       <tr>
         <td colspan="2">
-          <?php echo $form->renderHiddenFields(false) ?>
+          <?php echo $form->renderHiddenFields(true) ?>
           &nbsp;<a href="<?php echo url_for('noticia/index') ?>">Back to list</a>
           <?php if (!$form->getObject()->isNew()): ?>
             &nbsp;<?php echo link_to('Delete', 'noticia/delete?id='.$form->getObject()->getId(), array('method' => 'delete', 'confirm' => 'Are you sure?')) ?>
@@ -60,13 +60,6 @@
         <td>
           <?php echo $form['secciones_list']->renderError() ?>
           <?php echo $form['secciones_list'] ?>
-        </td>
-      </tr>
-      <tr>
-        <th><?php echo $form['comentarios_list']->renderLabel() ?></th>
-        <td>
-          <?php echo $form['comentarios_list']->renderError() ?>
-          <?php echo $form['comentarios_list'] ?>
         </td>
       </tr>
     </tbody>

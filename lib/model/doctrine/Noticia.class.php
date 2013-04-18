@@ -12,8 +12,4 @@
  */
 class Noticia extends BaseNoticia
 {
-  public function __toString()
-  {
-    return $this->getTitulo();
-  }
 }

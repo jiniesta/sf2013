@@ -8,9 +8,10 @@ homepage:
 
 # generic rules
 # please, remove them by adding more specific rules
-formNoticia_create:
-  url: /home/NoticiaNueva
-  param: { module: home , action: formNoticia }
+
+#deportes: 
+ # url:  /deportes
+ # param:  { module: home, action: deportes }
 
 default_index:
   url:   /:module
@@ -18,5 +19,6 @@ default_index:
 
 default:
   url:   /:module/:action/*
+
   
 

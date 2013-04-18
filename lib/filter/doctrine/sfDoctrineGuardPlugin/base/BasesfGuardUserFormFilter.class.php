@@ -28,7 +28,6 @@ abstract class BasesfGuardUserFormFilter extends BaseFormFilterDoctrine
       'groups_list'      => new sfWidgetFormDoctrineChoice(array('multiple' => true, 'model' => 'sfGuardGroup')),
       'permissions_list' => new sfWidgetFormDoctrineChoice(array('multiple' => true, 'model' => 'sfGuardPermission')),
       'noticias_list'    => new sfWidgetFormDoctrineChoice(array('multiple' => true, 'model' => 'Noticia')),
-      'comentarios_list' => new sfWidgetFormDoctrineChoice(array('multiple' => true, 'model' => 'Comentario')),
     ));
 
     $this->setValidators(array(
@@ -47,7 +46,6 @@ abstract class BasesfGuardUserFormFilter extends BaseFormFilterDoctrine
       'groups_list'      => new sfValidatorDoctrineChoice(array('multiple' => true, 'model' => 'sfGuardGroup', 'required' => false)),
       'permissions_list' => new sfValidatorDoctrineChoice(array('multiple' => true, 'model' => 'sfGuardPermission', 'required' => false)),
       'noticias_list'    => new sfValidatorDoctrineChoice(array('multiple' => true, 'model' => 'Noticia', 'required' => false)),
-      'comentarios_list' => new sfValidatorDoctrineChoice(array('multiple' => true, 'model' => 'Comentario', 'required' => false)),
     ));
 
     $this->widgetSchema->setNameFormat('sf_guard_user_filters[%s]');
@@ -113,24 +111,6 @@ abstract class BasesfGuardUserFormFilter extends BaseFormFilterDoctrine
     ;
   }
 
-  public function addComentariosListColumnQuery(Doctrine_Query $query, $field, $values)
-  {
-    if (!is_array($values))
-    {
-      $values = array($values);
-    }
-
-    if (!count($values))
-    {
-      return;
-    }
-
-    $query
-      ->leftJoin($query->getRootAlias().'.ComentarioUsuario ComentarioUsuario')
-      ->andWhereIn('ComentarioUsuario.comentario_id', $values)
-    ;
-  }
-
   public function getModelName()
   {
     return 'sfGuardUser';
@@ -155,7 +135,6 @@ abstract class BasesfGuardUserFormFilter extends BaseFormFilterDoctrine
       'groups_list'      => 'ManyKey',
       'permissions_list' => 'ManyKey',
       'noticias_list'    => 'ManyKey',
-      'comentarios_list' => 'ManyKey',
     );
   }
 }

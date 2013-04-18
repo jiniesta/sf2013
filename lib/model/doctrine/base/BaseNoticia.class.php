@@ -11,31 +11,28 @@
  * @property date $fecha
  * @property Doctrine_Collection $Autores
  * @property Doctrine_Collection $Secciones
- * @property Doctrine_Collection $Comentarios
  * @property Doctrine_Collection $AutorNoticia
  * @property Doctrine_Collection $SeccionNoticia
- * @property Doctrine_Collection $ComentarioNoticia
+ * @property Doctrine_Collection $Comentario
  * 
- * @method string              getTitulo()            Returns the current record's "titulo" value
- * @method string              getSubtitulo()         Returns the current record's "subtitulo" value
- * @method string              getTexto()             Returns the current record's "texto" value
- * @method date                getFecha()             Returns the current record's "fecha" value
- * @method Doctrine_Collection getAutores()           Returns the current record's "Autores" collection
- * @method Doctrine_Collection getSecciones()         Returns the current record's "Secciones" collection
- * @method Doctrine_Collection getComentarios()       Returns the current record's "Comentarios" collection
- * @method Doctrine_Collection getAutorNoticia()      Returns the current record's "AutorNoticia" collection
- * @method Doctrine_Collection getSeccionNoticia()    Returns the current record's "SeccionNoticia" collection
- * @method Doctrine_Collection getComentarioNoticia() Returns the current record's "ComentarioNoticia" collection
- * @method Noticia             setTitulo()            Sets the current record's "titulo" value
- * @method Noticia             setSubtitulo()         Sets the current record's "subtitulo" value
- * @method Noticia             setTexto()             Sets the current record's "texto" value
- * @method Noticia             setFecha()             Sets the current record's "fecha" value
- * @method Noticia             setAutores()           Sets the current record's "Autores" collection
- * @method Noticia             setSecciones()         Sets the current record's "Secciones" collection
- * @method Noticia             setComentarios()       Sets the current record's "Comentarios" collection
- * @method Noticia             setAutorNoticia()      Sets the current record's "AutorNoticia" collection
- * @method Noticia             setSeccionNoticia()    Sets the current record's "SeccionNoticia" collection
- * @method Noticia             setComentarioNoticia() Sets the current record's "ComentarioNoticia" collection
+ * @method string              getTitulo()         Returns the current record's "titulo" value
+ * @method string              getSubtitulo()      Returns the current record's "subtitulo" value
+ * @method string              getTexto()          Returns the current record's "texto" value
+ * @method date                getFecha()          Returns the current record's "fecha" value
+ * @method Doctrine_Collection getAutores()        Returns the current record's "Autores" collection
+ * @method Doctrine_Collection getSecciones()      Returns the current record's "Secciones" collection
+ * @method Doctrine_Collection getAutorNoticia()   Returns the current record's "AutorNoticia" collection
+ * @method Doctrine_Collection getSeccionNoticia() Returns the current record's "SeccionNoticia" collection
+ * @method Doctrine_Collection getComentario()     Returns the current record's "Comentario" collection
+ * @method Noticia             setTitulo()         Sets the current record's "titulo" value
+ * @method Noticia             setSubtitulo()      Sets the current record's "subtitulo" value
+ * @method Noticia             setTexto()          Sets the current record's "texto" value
+ * @method Noticia             setFecha()          Sets the current record's "fecha" value
+ * @method Noticia             setAutores()        Sets the current record's "Autores" collection
+ * @method Noticia             setSecciones()      Sets the current record's "Secciones" collection
+ * @method Noticia             setAutorNoticia()   Sets the current record's "AutorNoticia" collection
+ * @method Noticia             setSeccionNoticia() Sets the current record's "SeccionNoticia" collection
+ * @method Noticia             setComentario()     Sets the current record's "Comentario" collection
  * 
  * @package    sf2013
  * @subpackage model
@@ -81,11 +78,6 @@ abstract class BaseNoticia extends sfDoctrineRecord
              'local' => 'noticia_id',
              'foreign' => 'seccion_id'));
 
-        $this->hasMany('Comentario as Comentarios', array(
-             'refClass' => 'ComentarioNoticia',
-             'local' => 'noticia_id',
-             'foreign' => 'comentario_id'));
-
         $this->hasMany('AutorNoticia', array(
              'local' => 'id',
              'foreign' => 'noticia_id'));
@@ -94,7 +86,7 @@ abstract class BaseNoticia extends sfDoctrineRecord
              'local' => 'id',
              'foreign' => 'noticia_id'));
 
-        $this->hasMany('ComentarioNoticia', array(
+        $this->hasMany('Comentario', array(
              'local' => 'id',
              'foreign' => 'noticia_id'));
     }

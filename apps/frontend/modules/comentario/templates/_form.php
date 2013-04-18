@@ -35,17 +35,17 @@
         </td>
       </tr>
       <tr>
-        <th><?php echo $form['usuario_list']->renderLabel() ?></th>
+        <th><?php echo $form['usuario_id']->renderLabel() ?></th>
         <td>
-          <?php echo $form['usuario_list']->renderError() ?>
-          <?php echo $form['usuario_list'] ?>
+          <?php echo $form['usuario_id']->renderError() ?>
+          <?php echo $form['usuario_id'] ?>
         </td>
       </tr>
       <tr>
-        <th><?php echo $form['noticias_list']->renderLabel() ?></th>
+        <th><?php echo $form['noticia_id']->renderLabel() ?></th>
         <td>
-          <?php echo $form['noticias_list']->renderError() ?>
-          <?php echo $form['noticias_list'] ?>
+          <?php echo $form['noticia_id']->renderError() ?>
+          <?php echo $form['noticia_id'] ?>
         </td>
       </tr>
     </tbody>

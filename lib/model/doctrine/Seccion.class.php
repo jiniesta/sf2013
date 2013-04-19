@@ -14,7 +14,7 @@ class Seccion extends BaseSeccion
 {
 	public function getNoticias($seccion)
 	{
-		$noticias = Doctrine_Query::create() -> from('Noticia n') -> leftJoin('n.SeccionNoticia sn') -> leftJoin('sn.Seccion s') -> where('s.seccion = ?',$seccion -> getSeccion()) -> execute();
+		$noticias = Doctrine_Query::create() -> from('Noticia n') -> leftJoin('n.SeccionNoticia sn') -> leftJoin('sn.Seccion s') -> where('s.seccion = ?',$seccion -> getSeccion()) -> orderBy('n.fecha DESC') -> execute();
 		return $noticias;
 	}
 }

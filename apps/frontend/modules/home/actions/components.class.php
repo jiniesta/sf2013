@@ -1,6 +1,7 @@
 <?php
 class homeComponents extends sfComponents{
-  public function executeMenuPrincipal(sfWebRequest $request){
+  public function executeMenuPrincipal(sfWebRequest $request)
+  {
 	$query = Doctrine_Query::create();
 	$query -> from("seccion s");
 	$valor = "Principal";
@@ -15,6 +16,17 @@ class homeComponents extends sfComponents{
 		$subsecciones[] = $query -> execute();	
 	}
 	$this -> subsecciones = $subsecciones;
+  }
+
+  public function executeComentarios(sfWebRequest $request)
+  {
+  	$this->comentarios=Doctrine::getTable('Comentario')->createQuery('c')->where('noticia_id = ?',$_GET['id'])->orderBy('c.fecha DESC')->execute();
+  	$this->usuario = $this->getUser()->getGuardUser();
+
+  }
+
+  public function executeBarraUsuario(sfWebRequest $request){
+    
   }
 }
 ?>

@@ -70,4 +70,16 @@ class comentarioActions extends sfActions
       $this->redirect('comentario/edit?id='.$comentario->getId());
     }
   }
+
+  public function executeInsertar(sfWebRequest $request)
+  {
+    $comentario=new Comentario();
+    $comentario->setUsuario_id($_POST['id_user']);
+    $comentario->setFecha(date('Y-m-d'));
+    $comentario->setTexto($_POST['texto']);
+    $noticia = Doctrine::getTable('Noticia')->find();
+    $comentario->setNoticiaId($_POST['id_not']);
+    $comentario->save();
+    redirect('/home/vernoticia?id='.$_POST['id_not']);
+  }
 }

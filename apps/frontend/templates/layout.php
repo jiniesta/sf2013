@@ -17,6 +17,9 @@
             <?php include_component("home","menuPrincipal") ?>
           </div>
           </center>
+          <div class="span">
+            <?php include_component("home","barraUsuario") ?>
+          </div>
         </div>
       </header>
       <div id="cuerpo">

@@ -12,4 +12,14 @@
  */
 class Comentario extends BaseComentario
 {
+	public function getUsuario($comentario)
+ {
+  $usuario=Doctrine_Query::create()->from('sfguarduser u')->select('u.username')->where('u.id = ?', $comentario->getUsuario_id())->fetchOne();
+  return $usuario;
+ }
+ public function getNoticia($comentario)
+ {
+  $noticia=Doctrine_Query::create()->from('noticia n')->select('n.id')->where('n.id = ?', $comentario->getNoticia_id())->fetchOne();
+  return $noticia;
+ }
 }

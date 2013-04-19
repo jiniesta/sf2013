@@ -52,6 +52,13 @@ class homeActions extends sfActions
 
   public function executeCultura(sfWebRequest $request)
   {
-      
+    $seccion = new Seccion();
+    $seccion -> setSeccion('Cultura');
+    $this -> noticias = $seccion -> getNoticias($seccion); 
+  }
+
+  public function executeVernoticia(sfWebRequest $request)
+  {
+    $this -> noticia = Doctrine_Query::create() -> from('Noticia n') -> where('n.id = ?',$_GET['id']) -> fetchOne();
   }
 }
